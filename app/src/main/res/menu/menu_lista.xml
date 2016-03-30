@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SaudeActivity">
+
+    <item android:id="@+id/cadastre_se"
+        android:title="@string/cadastre"
+        >
+    </item>
+
+    <item android:id="@+id/apagar"
+        android:title="@string/apagar"
+        >
+    </item>
+
+</menu>
