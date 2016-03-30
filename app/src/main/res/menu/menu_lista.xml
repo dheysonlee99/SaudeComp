@@ -6,6 +6,8 @@
 
     <item android:id="@+id/cadastre_se"
         android:title="@string/cadastre"
+        android:icon="@drawable/addpaciente"
+        app:showAsAction="always"
         >
     </item>
 
