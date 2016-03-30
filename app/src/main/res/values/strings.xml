@@ -29,5 +29,13 @@
         <item>Não Realizada</item>
     </string-array>
 
+    <string-array name="taxa">
+        <item>Glicemia</item>
+        <item>Colesterol</item>
+        <item>Ferritina</item>
+        <item>TGO</item>
+        <item>TGP</item>
+        <item>Hemoglobina</item>
+    </string-array>
 
 </resources>

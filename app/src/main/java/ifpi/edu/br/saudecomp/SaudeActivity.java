@@ -63,7 +63,7 @@ public class SaudeActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        super.onResume();;
+        super.onResume();
 
         recarregarDados();
 
@@ -84,13 +84,25 @@ public class SaudeActivity extends AppCompatActivity {
 
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuItem item = menu.add("Agendar Consulta");
+        MenuItem item2 = menu.add("Agendar Exame");
 
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(SaudeActivity.this, "Vc clicou no agendar consulta...", Toast.LENGTH_SHORT).show();
                 Intent irParaConsult = new Intent(SaudeActivity.this,ConsultaActivity.class);
                 startActivity(irParaConsult);
+                return false;
+            }
+        });
+
+        item2.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
                 Toast.makeText(SaudeActivity.this, "Vc clicou no agendar consulta...", Toast.LENGTH_SHORT).show();
+                Intent irParaExame = new Intent(SaudeActivity.this,ExameActivity.class);
+                startActivity(irParaExame);
                 return false;
             }
         });
