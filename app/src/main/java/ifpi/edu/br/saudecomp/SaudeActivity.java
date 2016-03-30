@@ -63,7 +63,7 @@ public class SaudeActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        super.onResume();
+        super.onResume();;
 
         recarregarDados();
 
