@@ -17,7 +17,11 @@
         </activity>
         <activity android:name=".CadastroActivity" />
         <activity android:name=".ConsultaActivity" />
-        <activity android:name=".ExameActivity"></activity>
+        <activity android:name=".ExameActivity" />
+        <activity android:name=".RemedioActivity" />
+        <activity android:name=".ListaRemedioActivity" />
+        <activity android:name=".ListaExameActivity" />
+        <activity android:name=".ListaConsultaActivity"></activity>
     </application>
 
 </manifest>

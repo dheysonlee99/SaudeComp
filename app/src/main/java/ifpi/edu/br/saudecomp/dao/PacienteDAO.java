@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import ifpi.edu.br.saudecomp.modelo.Consulta;
 import ifpi.edu.br.saudecomp.modelo.Paciente;
 
 /**
@@ -17,7 +18,8 @@ import ifpi.edu.br.saudecomp.modelo.Paciente;
 public class PacienteDAO extends SQLiteOpenHelper {
 
     public PacienteDAO(Context context) {
-        super(context,"Pacientes.bd", null, 4);
+
+        super(context,"Pacientes.bd", null, 5);
     }
 
     @Override
@@ -30,6 +32,32 @@ public class PacienteDAO extends SQLiteOpenHelper {
                 "sexo VARCHAR (50)," +
                 "idade INTEGER );";
         db.execSQL(sql);
+
+        sql = "CREATE TABLE Consulta " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "paciente_id INTEGER, " +
+                "nome VARCHAR (50), " +
+                "data VARCHAR (50), " +
+                "especialidade VARCHAR (50)," +
+                "status VARCHAR (50));";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE Exame " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "paciente_id INTEGER, " +
+                "nome VARCHAR (50), " +
+                "data VARCHAR (50), " +
+                "tipo VARCHAR (50)," +
+                "status VARCHAR (50));";
+
+        sql = "CREATE TABLE Remedio " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "paciente_id INTEGER, " +
+                "nome VARCHAR (50), " +
+                "modoUso VARCHAR (250));";
+        db.execSQL(sql);
+
+
     }
 
     @Override
@@ -52,6 +80,16 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
     }
 
+   /* public void inserirConsulta(Consulta consulta){
+        ContentValues cv = new ContentValues();
+        cv.put("nome", consulta.getNome());
+        cv.put("data", consulta.getData());
+        cv.put("especialidade", consulta.getEspecialidade());
+        cv.put("status", consulta.getStatus());
+
+        getWritableDatabase().insert("Consulta", null, cv);
+    }*/
+
     public List<Paciente> lista() {
         List<Paciente> pacientes = new ArrayList<>();
         String sql = "SELECT * FROM Paciente;";
@@ -69,6 +107,12 @@ public class PacienteDAO extends SQLiteOpenHelper {
         }
 
         return pacientes;
+    }
+
+    public void remover(Paciente paciente) {
+
+        String[] args = {String.valueOf(paciente.getId())};
+        getWritableDatabase().delete("Paciente", "id = ?", args);
     }
    
 }

@@ -16,14 +16,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clinica/Hospital:"
+        android:text="Local do Exame:"
         android:textSize="10pt"/>
 
     <EditText
         android:id="@+id/nome_clini_exame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome Clinica/Hospital"
+        android:hint="digite o local do exame:"
         android:textSize="10pt"/>
 
     <TextView
@@ -45,12 +45,19 @@
         android:textSize="10pt"/>
 
     <Spinner
-        android:id="@+id/taxa"
+        android:id="@+id/tipo_exame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/taxa"
         android:scrollbarSize="12pt">
     </Spinner>
+
+    <Spinner
+        android:id="@+id/status_exame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/status"
+        android:scrollbarSize="12pt"></Spinner>
 
 
     <Button
@@ -58,6 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Agendar Exame"
-        android:textSize="10pt"/>
+        android:textSize="10pt"
+        android:onClick="exameClick"/>
 
 </LinearLayout>

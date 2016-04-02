@@ -26,14 +26,40 @@ import ifpi.edu.br.saudecomp.ConsultaActivity;
 
 public class SaudeActivity extends AppCompatActivity {
 
-    private Paciente p;
+    private Paciente paciente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saude);
-        ListView listPacientes = (ListView) findViewById(R.id.list_pacientes);
+        final ListView listPacientes = (ListView) findViewById(R.id.list_pacientes);
         registerForContextMenu(listPacientes);
+
+        listPacientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(SaudeActivity.this, "Clicou no item " + position, Toast.LENGTH_SHORT).show();
+
+                paciente = (Paciente) parent.getItemAtPosition(position);
+
+
+                //Intent ir = new Intent(SaudeActivity.this, RemedioActivity.class);
+                //startActivity(ir);
+
+
+
+            }
+        });
+
+        listPacientes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(SaudeActivity.this, "Clico longo em " + parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                paciente = (Paciente) parent.getItemAtPosition(position);
+                return false;
+            }
+        });
+
     }
 
 
@@ -50,11 +76,9 @@ public class SaudeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.cadastre_se) {
-            //Toast.makeText(ListaVeiculosActivity.this, "Novo Paciente", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(SaudeActivity.this, "Novo Paciente", Toast.LENGTH_SHORT).show();
             Intent irParaForm = new Intent(this, CadastroActivity.class);
             startActivity(irParaForm);
-        } else if (item.getItemId() == R.id.apagar) {
-            Toast.makeText(SaudeActivity.this, "Apagar todos..", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -85,27 +109,102 @@ public class SaudeActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuItem item = menu.add("Agendar Consulta");
         MenuItem item2 = menu.add("Agendar Exame");
+        MenuItem item3 = menu.add("Adicionar Remedio");
+        MenuItem item4 = menu.add("Ver Consultas");
+        MenuItem item5 = menu.add("Ver Exames");
+        MenuItem item6 = menu.add("Ver Remédios");
+        MenuItem item7 = menu.add("Apagar Paciente");
+
 
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(SaudeActivity.this, "Vc clicou no agendar consulta...", Toast.LENGTH_SHORT).show();
-                Intent irParaConsult = new Intent(SaudeActivity.this,ConsultaActivity.class);
+                Toast.makeText(SaudeActivity.this, "Vc clicou no agendar consulta:", Toast.LENGTH_SHORT).show();
+                Intent irParaConsult = new Intent(SaudeActivity.this, ConsultaActivity.class);
                 startActivity(irParaConsult);
                 return false;
             }
         });
 
-        item2.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
+        item2.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(SaudeActivity.this, "Vc clicou no agendar consulta...", Toast.LENGTH_SHORT).show();
-                Intent irParaExame = new Intent(SaudeActivity.this,ExameActivity.class);
+                Toast.makeText(SaudeActivity.this, "Vc clicou no agendar exame:", Toast.LENGTH_SHORT).show();
+                Intent irParaExame = new Intent(SaudeActivity.this, ExameActivity.class);
                 startActivity(irParaExame);
                 return false;
             }
         });
 
+        item3.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(SaudeActivity.this, "Vc clicou em adicionar remedio:", Toast.LENGTH_SHORT).show();
+                Intent irParaRemedio = new Intent(SaudeActivity.this, RemedioActivity.class);
+                startActivity(irParaRemedio);
+                return false;
+            }
+        });
+
+        item4.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent irListaConsultas = new Intent(SaudeActivity.this, ListaConsultaActivity.class);
+                startActivity(irListaConsultas);
+                return false;
+            }
+        });
+
+        item5.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent irListaExame = new Intent(SaudeActivity.this, ListaExameActivity.class);
+                startActivity(irListaExame);
+                return false;
+            }
+        });
+
+        item6.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(SaudeActivity.this, "Vc clicou na listar Remedios", Toast.LENGTH_SHORT).show();
+                Intent irListaRemedios = new Intent(SaudeActivity.this, ListaRemedioActivity.class);
+                startActivity(irListaRemedios);
+                return false;
+            }
+        });
+
+
+
+
+        item7.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                AlertDialog.Builder b = new AlertDialog.Builder(SaudeActivity.this);
+                b.setMessage("Deseja apagar o paciente?");
+                b.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PacienteDAO dao = new PacienteDAO(SaudeActivity.this);
+                        dao.remover(paciente);
+                        recarregarDados();
+                        Toast.makeText(SaudeActivity.this, "Paciente removido com sucesso", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                b.setNegativeButton("NÃO", null);
+                b.show();
+
+                return false;
+            }
+
+
+        });
     }
+
 }

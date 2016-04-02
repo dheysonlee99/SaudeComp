@@ -11,9 +11,6 @@
         >
     </item>
 
-    <item android:id="@+id/apagar"
-        android:title="@string/apagar"
-        >
-    </item>
+
 
 </menu>

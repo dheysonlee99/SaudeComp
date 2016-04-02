@@ -14,6 +14,7 @@ import ifpi.edu.br.saudecomp.dao.PacienteDAO;
 
 public class CadastroActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class CadastroActivity extends AppCompatActivity {
         //Toast.makeText(this, "Veiculo adicionado ;)", Toast.LENGTH_SHORT).show();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Paciente adicionado ;)");
+        builder.setMessage("Paciente cadastrado com sucesso:");
         builder.setPositiveButton("Ok!", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

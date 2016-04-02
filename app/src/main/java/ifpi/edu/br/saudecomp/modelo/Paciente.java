@@ -65,6 +65,6 @@ public class Paciente {
                 this.nome +"\n"+
                 "Cartao do Sus: "+
                 this.susNumero+"\n"+
-                "Sexo: "+ this.sexo + "  Idade: "+ this.idade;
+                "Sexo: "+ this.sexo + "  Idade: "+ this.idade + " id: " + this.id;
     }
 }

@@ -25,7 +25,7 @@
         android:textSize="10pt"/>
 
     <EditText
-        android:id="@+id/nome_Clinica"
+        android:id="@+id/nome_clinica"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome da Clinica/Hospital"
@@ -39,7 +39,7 @@
         android:textSize="10pt"/>
 
     <EditText
-        android:id="@+id/data"
+        android:id="@+id/data_consulta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="10pt"
@@ -67,7 +67,7 @@
         android:textSize="10pt"/>
 
     <Spinner
-        android:id="@+id/status"
+        android:id="@+id/status_consulta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/status"
