@@ -111,24 +111,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
         getWritableDatabase().insert("Consulta", null, cv);
     }
 
-    public List<Consulta> listar() {
-        List<Consulta> consultas = new ArrayList<>();
-        String sql = "SELECT * FROM Consulta;";
-        Cursor c = getReadableDatabase().rawQuery(sql, null);
 
-        while (c.moveToNext()) {
-            int id = c.getInt(c.getColumnIndex("id"));
-            String nome = c.getString(c.getColumnIndex("nome"));
-            String data = c.getString(c.getColumnIndex("data"));
-            String especialidade = c.getString(c.getColumnIndex("especialidade"));
-            String status = c.getString(c.getColumnIndex("status"));
-            Consulta consulta = new Consulta(nome, data,especialidade, status);
-            consulta.setId(id);
-            consultas.add(consulta);
-        }
-
-        return consultas;
-    }
 
 
 
@@ -138,9 +121,5 @@ public class PacienteDAO extends SQLiteOpenHelper {
         getWritableDatabase().delete("Paciente", "id = ?", args);
     }
 
-    public void remover(Consulta consulta){
-        String[] args = {String.valueOf(consulta.getId())};
-        getWritableDatabase().delete("Consulta", "id = ?", args);
-    }
    
 }

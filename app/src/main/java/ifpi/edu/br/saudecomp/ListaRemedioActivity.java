@@ -9,20 +9,35 @@ import java.util.List;
 
 import ifpi.edu.br.saudecomp.dao.PacienteDAO;
 import ifpi.edu.br.saudecomp.dao.RemedioDAO;
+import ifpi.edu.br.saudecomp.modelo.Consulta;
 import ifpi.edu.br.saudecomp.modelo.Paciente;
 import ifpi.edu.br.saudecomp.modelo.Remedio;
 
 public class ListaRemedioActivity extends AppCompatActivity {
 
 
-    private Remedio remedio;
+    private PacienteDAO ass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_remedio);
-        
-
+        ass = new PacienteDAO(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        recarregarDados();
+    }
+
+    public void recarregarDados(){
+        ListView listRemedios = (ListView)findViewById(R.id.list_remedios);
+        RemedioDAO dao = new RemedioDAO(ass);
+        List<Remedio>  remedios = dao.listar();
+
+        ArrayAdapter<Remedio> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, remedios);
+
+        listRemedios.setAdapter(adapter);
+    }
 }

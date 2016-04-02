@@ -14,10 +14,13 @@ import ifpi.edu.br.saudecomp.modelo.Exame;
 
 public class ExameActivity extends AppCompatActivity {
 
+    private PacienteDAO ass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exame);
+
+        ass = new PacienteDAO(this);
     }
 
     public void exameClick(View elementoClicado){
@@ -34,7 +37,7 @@ public class ExameActivity extends AppCompatActivity {
 
         Exame exame = new Exame(nome,data, tipo,status);
 
-        ExameDAO dao = new ExameDAO(new PacienteDAO(getApplication()));
+        ExameDAO dao = new ExameDAO(ass);
         dao.inserirExame(exame);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -15,11 +15,14 @@ import ifpi.edu.br.saudecomp.modelo.Paciente;
 
 public class ConsultaActivity extends AppCompatActivity {
 
+    private PacienteDAO ass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta);
+
+        ass = new PacienteDAO(this);
 
     }
     public void agendaClick(View elementoClicado){
@@ -36,7 +39,7 @@ public class ConsultaActivity extends AppCompatActivity {
 
         Consulta consulta = new Consulta(nome,data,especialidade,status);
 
-        PacienteDAO dao = new PacienteDAO(this);
+        ConsultaDAO dao = new ConsultaDAO(ass);
         dao.inserirConsulta(consulta);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

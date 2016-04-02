@@ -13,10 +13,12 @@ import ifpi.edu.br.saudecomp.modelo.Remedio;
 
 public class RemedioActivity extends AppCompatActivity {
 
+    private PacienteDAO ass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remedio);
+        ass = new PacienteDAO(this);
     }
 
     public void remedioClick(View elementoClicado){
@@ -29,7 +31,7 @@ public class RemedioActivity extends AppCompatActivity {
 
         Remedio remedio = new Remedio(nome,modoUso);
 
-        RemedioDAO dao = new RemedioDAO(new PacienteDAO(getApplication()));
+        RemedioDAO dao = new RemedioDAO(ass);
         dao.inserirRemedio(remedio);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -14,7 +14,7 @@
         android:layout_gravity="center_horizontal" />
 
     <ListView
-        android:id="@+id/List_exames"
+        android:id="@+id/list_exames"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
 </LinearLayout>
