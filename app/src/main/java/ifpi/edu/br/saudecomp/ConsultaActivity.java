@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import ifpi.edu.br.saudecomp.dao.PacienteDAO;
 import ifpi.edu.br.saudecomp.modelo.Consulta;
 import ifpi.edu.br.saudecomp.dao.ConsultaDAO;
+import ifpi.edu.br.saudecomp.modelo.Paciente;
 
 public class ConsultaActivity extends AppCompatActivity {
 
@@ -35,7 +36,7 @@ public class ConsultaActivity extends AppCompatActivity {
 
         Consulta consulta = new Consulta(nome,data,especialidade,status);
 
-        ConsultaDAO dao = new ConsultaDAO(new PacienteDAO(getApplication()));
+        PacienteDAO dao = new PacienteDAO(this);
         dao.inserirConsulta(consulta);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

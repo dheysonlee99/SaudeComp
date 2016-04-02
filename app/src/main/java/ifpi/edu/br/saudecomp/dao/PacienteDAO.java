@@ -22,6 +22,8 @@ public class PacienteDAO extends SQLiteOpenHelper {
         super(context,"Pacientes.bd", null, 5);
     }
 
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -80,16 +82,6 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
     }
 
-   /* public void inserirConsulta(Consulta consulta){
-        ContentValues cv = new ContentValues();
-        cv.put("nome", consulta.getNome());
-        cv.put("data", consulta.getData());
-        cv.put("especialidade", consulta.getEspecialidade());
-        cv.put("status", consulta.getStatus());
-
-        getWritableDatabase().insert("Consulta", null, cv);
-    }*/
-
     public List<Paciente> lista() {
         List<Paciente> pacientes = new ArrayList<>();
         String sql = "SELECT * FROM Paciente;";
@@ -109,10 +101,46 @@ public class PacienteDAO extends SQLiteOpenHelper {
         return pacientes;
     }
 
+    public void inserirConsulta(Consulta consulta){
+        ContentValues cv = new ContentValues();
+        cv.put("nome", consulta.getNome());
+        cv.put("data", consulta.getData());
+        cv.put("especialidade", consulta.getEspecialidade());
+        cv.put("status", consulta.getStatus());
+
+        getWritableDatabase().insert("Consulta", null, cv);
+    }
+
+    public List<Consulta> listar() {
+        List<Consulta> consultas = new ArrayList<>();
+        String sql = "SELECT * FROM Consulta;";
+        Cursor c = getReadableDatabase().rawQuery(sql, null);
+
+        while (c.moveToNext()) {
+            int id = c.getInt(c.getColumnIndex("id"));
+            String nome = c.getString(c.getColumnIndex("nome"));
+            String data = c.getString(c.getColumnIndex("data"));
+            String especialidade = c.getString(c.getColumnIndex("especialidade"));
+            String status = c.getString(c.getColumnIndex("status"));
+            Consulta consulta = new Consulta(nome, data,especialidade, status);
+            consulta.setId(id);
+            consultas.add(consulta);
+        }
+
+        return consultas;
+    }
+
+
+
     public void remover(Paciente paciente) {
 
         String[] args = {String.valueOf(paciente.getId())};
         getWritableDatabase().delete("Paciente", "id = ?", args);
+    }
+
+    public void remover(Consulta consulta){
+        String[] args = {String.valueOf(consulta.getId())};
+        getWritableDatabase().delete("Consulta", "id = ?", args);
     }
    
 }

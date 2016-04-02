@@ -82,6 +82,6 @@ public class Consulta {
     public String toString() {
         return "Local da Consulta: "+ this.nome + "\n"+
                 "Especialidade: " + this.especialidade + "\n"+
-                "Data: " + this.data + "Status: "+ this.status;
+                "Data: " + this.data + "  Status: "+ this.status;
     }
 }
