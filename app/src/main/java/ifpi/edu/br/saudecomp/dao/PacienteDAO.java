@@ -52,6 +52,8 @@ public class PacienteDAO extends SQLiteOpenHelper {
                 "tipo VARCHAR (50)," +
                 "status VARCHAR (50));";
 
+        db.execSQL(sql);
+
         sql = "CREATE TABLE Remedio " +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "paciente_id INTEGER, " +

@@ -1,6 +1,7 @@
 package ifpi.edu.br.saudecomp;
 
-import android.app.AlertDialog;
+import
+        android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import ifpi.edu.br.saudecomp.dao.ExameDAO;
+
 import ifpi.edu.br.saudecomp.dao.PacienteDAO;
+import ifpi.edu.br.saudecomp.dao.ExameDAO;
 import ifpi.edu.br.saudecomp.modelo.Exame;
 
 public class ExameActivity extends AppCompatActivity {
@@ -50,5 +52,7 @@ public class ExameActivity extends AppCompatActivity {
         });
 
         builder.show();
+
     }
+
 }

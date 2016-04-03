@@ -6,12 +6,11 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-import ifpi.edu.br.saudecomp.modelo.Consulta;
+
 import ifpi.edu.br.saudecomp.modelo.Exame;
-import ifpi.edu.br.saudecomp.modelo.Remedio;
 
 /**
- * Created by programador on 31/03/16.
+ * Created by programador on 03/04/16.
  */
 public class ExameDAO {
 
@@ -22,14 +21,14 @@ public class ExameDAO {
     }
 
     public void inserirExame(Exame exame){
-
         ContentValues cv = new ContentValues();
-        cv.put("nome", exame.getNomeLocal());
+        cv.put("nome",exame.getNomeLocal());
         cv.put("data",exame.getData());
-        cv.put("tipo",exame.getStatus());
+        cv.put("status",exame.getStatus());
+        cv.put("resultado",exame.getResultado());
+
         ass.getWritableDatabase().insert("Exame",null,cv);
     }
-
 
     public List<Exame> listar() {
         List<Exame> exames = new ArrayList<>();
@@ -49,12 +48,5 @@ public class ExameDAO {
 
         return exames;
     }
-    public void removerExame(Exame exame){
-        String[] args = {String.valueOf(exame.getId())};
-
-        ass.getWritableDatabase().delete("Exame",null, args);
-
-    }
-
 
 }
